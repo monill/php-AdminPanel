@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\BlogReq;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,34 +14,34 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+
+    }
+
     public function index()
     {
-        $blogs = Blog::paginate(15);
-        return view('admin.blogs.index', compact('blogs'));
+        if (Auth::user()->can('viewusers')) {
+            $blogs = Blog::paginate(15);
+            return view('admin.blogs.index', compact('blogs'));
+        } else {
+            Log::newLog("Usuário tentou acesso area restrita - BLOG, user: " . Auth::user()->name);
+            return view('admin.layout.403');
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        $categs = BlogCategory::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        return view('admin.blogs.add', compact('categs'));
+        if (Auth::user()->can('createblog')) {
+            $categs = BlogCategory::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+            return view('admin.blogs.add', compact('categs'));
+        } else {
+            Log::newLog("Usuário tentou criar area restrita - BLOG, user: " . Auth::user()->name);
+            return view('admin.layout.403');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(BlogReq $request)
     {
         $blog = new Blog();
@@ -73,40 +74,24 @@ class BlogController extends Controller
 
         $blog->save();
 
+        Log::newLog("Usuário criou novo blog, user: " . Auth::user()->name);
+
         return redirect('dashboard/blogs');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $blog = Blog::findOrFail($id);
-        $categs = BlogCategory::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        return view('admin.blogs.edit', compact('blog', 'categs'));
+        if (Auth::user()->can('editblog')) {
+            $blog = Blog::findOrFail($id);
+            $categs = BlogCategory::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+            return view('admin.blogs.edit', compact('blog', 'categs'));
+        } else {
+            Log::newLog("Usuário tentou editar area restrita BLOG-$id, user: " . Auth::user()->name);
+            return view('admin.layout.403');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(BlogReq $request, $id)
     {
         $blog = Blog::findOrFail($id);
@@ -144,27 +129,31 @@ class BlogController extends Controller
 
         $blog->update();
 
+        Log::newLog("Usuário alterou blog-$id, user: " . Auth::user()->name);
+
         flash('Blog atualizado com sucesso!')->success();
         return redirect('dashboard/blogs');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $blog = Blog::findOrFail($id);
+        if (Auth::user()->can('deleteblog')) {
+            $blog = Blog::findOrFail($id);
 
-        \File::delete(public_path('uploads/blogs/big/' . $blog->image));
-        \File::delete(public_path('uploads/blogs/small/' . $blog->image));
-        \File::delete(public_path('uploads/blogs/thumb/' . $blog->image));
+            \File::delete(public_path('uploads/blogs/big/' . $blog->image));
+            \File::delete(public_path('uploads/blogs/small/' . $blog->image));
+            \File::delete(public_path('uploads/blogs/thumb/' . $blog->image));
 
-        $blog->delete();
+            $blog->delete();
 
-        flash("Blog: {$blog->title} foi deletado!", 'warning');
-        return redirect('dashboard/blogs');
+            Log::newLog("Usuário deletou blog-$id, user: " . Auth::user()->name);
+
+            flash("Blog: {$blog->title} foi deletado!", 'warning');
+            return redirect('dashboard/blogs');
+        } else {
+            Log::newLog("Usuário tentou deletar area restrita BLOG-$id, user: " . Auth::user()->name);
+            return view('admin.layout.403');
+        }
     }
+
 }
