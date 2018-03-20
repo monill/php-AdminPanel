@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 09 Mar 2018 12:39:52 -0300.
+ * Date: Mon, 19 Mar 2018 14:58:26 -0300.
  */
 
 namespace App\Models;
@@ -18,7 +18,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $os_system
  * @property string $browser
  * @property bool $has_returned
- * @property int $returns
+ * @property int $access
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
@@ -28,7 +28,7 @@ class Visitor extends Eloquent
 {
 	protected $casts = [
 		'has_returned' => 'bool',
-		'returns' => 'int'
+		'access' => 'int'
 	];
 
 	protected $fillable = [
@@ -37,6 +37,6 @@ class Visitor extends Eloquent
 		'os_system',
 		'browser',
 		'has_returned',
-		'returns'
+		'access'
 	];
 }

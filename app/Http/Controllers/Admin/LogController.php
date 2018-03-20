@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Setting;
+use App\Models\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
 
-class SettingController extends Controller
+class LogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $setting = Setting::findOrFail(1);
-        return view('admin.settings.index', compact('setting'));
+        $logs = Log::all();
+        return view('admin.logs.index', compact('logs'));
     }
 
     /**
@@ -39,12 +37,7 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        $sett = $request->except('_token');
-        foreach ($sett as $key => $value) {
-            DB::table('settings')->where('id', 1)->update([$key => $value]);
-        }
-        flash("Configurações alterada com sucesso!")->info();
-        return redirect()->back();
+        //
     }
 
     /**

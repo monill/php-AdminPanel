@@ -39,19 +39,26 @@ Route::namespace('Admin')->group(function() {
 
 
         ##Profile
-        Route::get('profile', 'UserController@index');
+        Route::get('profile', 'UserController@profile');
         Route::put('profileupd', 'UserController@profileupd');
         Route::put('passupd', 'UserController@passupd');
 
         ##Add Users
-        Route::get('users', 'UserController@create');
-        Route::post('adduser', 'UserController@store');
-        Route::put('userupd/{id}', 'UserController@update');
+        Route::resource('users', 'UserController', ['except' => ['show']]);
+
         ##Visitors
-        Route::get('visitors', 'VisitorsController@index');
+        Route::get('visitors', 'VisitorController@index');
+
         ##Settings
-        Route::get('settings', 'SettingController@index');
-        Route::post('settings', 'SettingController@store');
+        Route::resource('settings', 'SettingController', ['except' => ['create', 'show', 'edit', 'update', 'destroy']]);
+
+        ##Roles
+        Route::resource('roles', 'RoleController', ['except' => ['show']]);
+        Route::resource('perms', 'PermController', ['except' => ['create', 'show', 'edit']]);
+
+
+        ##Logs
+        Route::get('logs', 'LogController@index');
 
     });
 });

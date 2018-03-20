@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\BlogCateg;
 use App\Models\BlogCategory;
+use App\Models\Log;
 use foo\bar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BlogCategoryController extends Controller
 {
@@ -43,7 +45,8 @@ class BlogCategoryController extends Controller
         $categ->name = $request->get('name');
         $categ->save();
 
-        return back();
+        Log::newLog("Usuário criou novo blog categoria, user: " . Auth::user()->name);
+        return redirect()->back();
     }
 
     /**
@@ -81,7 +84,8 @@ class BlogCategoryController extends Controller
         $categ->name = $request->get('name');
         $categ->update();
 
-        return back();
+        Log::newLog("Usuário alterou blog cateria-$id, user: " . Auth::user()->name);
+        return redirect()->back();
     }
 
     /**
@@ -93,7 +97,7 @@ class BlogCategoryController extends Controller
     public function destroy($id)
     {
         BlogCategory::findOrFail($id)->destroy($id);
-        return back();
-
+        Log::newLog("Usuário deletou blog cateria-$id, user: " . Auth::user()->name);
+        return redirect()->back();
     }
 }

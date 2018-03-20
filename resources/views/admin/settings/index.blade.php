@@ -213,7 +213,7 @@
                     </div>
                     <!-- /tabs -->
                 </section>
-                {!! Form::submit('Atualizar', ['class' => 'btn btn-success']) !!}
+                {!! Form::submit('Atualizar', ['class' => 'btn btn-success btn-rounded']) !!}
                 {!! Form::close() !!}
             </div>
         </div>

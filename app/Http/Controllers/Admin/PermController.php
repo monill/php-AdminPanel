@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Setting;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
 
-class SettingController extends Controller
+class PermController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $setting = Setting::findOrFail(1);
-        return view('admin.settings.index', compact('setting'));
+        $perms = Permission::all();
+        return view('admin.perms.index', compact('perms'));
     }
 
     /**
@@ -39,11 +37,13 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        $sett = $request->except('_token');
-        foreach ($sett as $key => $value) {
-            DB::table('settings')->where('id', 1)->update([$key => $value]);
-        }
-        flash("Configurações alterada com sucesso!")->info();
+        $perm = new Permission();
+        $perm->name = $request->get('name');
+        $perm->display_name = $request->get('display_name');
+        $perm->save();
+
+        flash("Permissão criada com sucesso.")->success();
+
         return redirect()->back();
     }
 
@@ -78,7 +78,13 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $perm = Permission::findOrFail($id);
+        $perm->name = $request->get('name');
+        $perm->display_name = $request->get('display_name');
+        $perm->update();
+
+        flash("Permissão alterada com sucesso.")->success();
+        return redirect()->back();
     }
 
     /**
@@ -89,6 +95,9 @@ class SettingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Permission::findOrFail($id)->destroy($id);
+
+        flash("Permissão deletada.")->success();
+        return redirect()->back();
     }
 }

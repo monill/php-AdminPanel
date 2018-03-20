@@ -7,7 +7,7 @@
                     @if(\Auth::user()->avatar == null)
                         <img src="{{ asset('uploads/user/default_avatar.jpg') }}" alt="Avatar" class="img-circle">
                     @else
-                        <img src="{{ asset('uploads/user/' . Auth::user()->avatar) }}" alt="Avatar" class="img-circle">
+                        <img src="{{ asset('uploads/user/' . \Auth::user()->avatar) }}" alt="Avatar" class="img-circle">
                     @endif
                 </div>
                 <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ \Auth::user()->name }} <span class="caret"></span></a>
@@ -28,8 +28,8 @@
                 </ul>
             </div>
         </div>
-        <ul class="nav" id="side-menu">
 
+        <ul class="nav" id="side-menu">
             <li class="nav-small-cap m-t-10">--- Main Menu</li>
             <li>
                 <a href="{{ url('dashboard') }}" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard </span></a>
@@ -61,6 +61,17 @@
 
             <li>
                 <a href="{{ url('dashboard/visitors') }}" class="waves-effect"><i data-icon="&#xe00b;" class="fa fa-cloud"></i> <span class="hide-menu">Visitantes</span></a>
+            </li>
+
+            <li><a href="javascript:void(0);" class="waves-effect"><i data-icon=")" class="icon-docs fa-fw"></i> <span class="hide-menu">Regras<span class="fa arrow"></span></span></a>
+                <ul class="nav nav-second-level">
+                    <li> <a href="{{ url('dashboard/roles') }}">Regras</a></li>
+                    <li> <a href="{{ url('dashboard/perms') }}">Permissões</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="{{ url('dashboard/logs') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i> Logs</a>
             </li>
 
             <li class="nav-small-cap">--- Logout</li>

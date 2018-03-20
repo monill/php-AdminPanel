@@ -27,7 +27,8 @@ class AddUserReq extends FormRequest
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|between:6,16',
             'passwd' => 'required|same:password',
-            'class' => 'required'
+            'class' => 'required',
+            'role' => 'required'
         ];
     }
 }

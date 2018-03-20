@@ -2,11 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 09 Mar 2018 12:39:52 -0300.
+ * Date: Mon, 19 Mar 2018 14:58:26 -0300.
  */
 
 namespace App\Models;
 
+use App\BrowserDetection;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
@@ -30,4 +31,16 @@ class Log extends Eloquent
 		'browser',
 		'os_system'
 	];
+
+	public static function newLog($content)
+    {
+        $broser = new BrowserDetection();
+
+        return Log::create([
+            'content' => $content,
+            'ip' => getIP(),
+            'browser' => $broser->getName(),
+            'os_system' => $broser->getPlatformVersion()
+        ]);
+    }
 }

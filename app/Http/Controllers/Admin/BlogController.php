@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -109,7 +110,7 @@ class BlogController extends Controller
     public function update(BlogReq $request, $id)
     {
         $blog = Blog::findOrFail($id);
-        $blog->user_id = 1;
+        $blog->user_id = Auth::user()->id;
         $blog->category_id = $request->get('category_id');
         $blog->title = $request->get('title');
         $blog->meta_title = $request->get('meta_title');

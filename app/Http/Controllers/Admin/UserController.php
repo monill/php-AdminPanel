@@ -5,17 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\AddUserReq;
 use App\Http\Requests\ProfilePassReq;
 use App\Http\Requests\ProfileReq;
+use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
 {
-    //TODO
-    //finish all this
+
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +24,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user =  User::findOrFail(Auth::user()->id);
-        return view('admin.profile.index', compact('user'));
+        if (Auth::user()->can('viewusers')) {
+            if (Auth::user()->class == 'sysop') {
+                $users = User::all();
+            } else {
+                $users = DB::table('users')->where('class', '!=', 'sysop')->get();
+            }
+            return view('admin.users.index', compact('users'));
+        } else {
+            return view('admin.layout.403');
+        }
     }
 
     /**
@@ -34,8 +43,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
+        $roles = Role::pluck('name', 'id')->all();
+        return view('admin.users.add', compact('roles'));
     }
 
     /**
@@ -53,8 +62,10 @@ class UserController extends Controller
         $user->class = $request->get('class');
         $user->save();
 
+        $user->attachRole($request->get('role'));
+
         flash("Usuário cadastrado com sucesso!")->success();
-        return redirect('dashboard/adduser');
+        return redirect('dashboard/users');
     }
 
     /**
@@ -76,7 +87,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::pluck('name', 'id')->all();
+        $userRole = $user->roles->pluck('id', $id)->all();
+
+        return view('admin.users.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**
@@ -88,7 +103,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        if (!empty($request->get('password'))) {
+            $user->password = Hash::make($request->get('password'));
+        }
+        $user->class = $request->get('class');
+        $user->update();
+
+        DB::table('role_user')->where('user_id', $id)->delete();
+
+        $user->attachRole($request->get('role'));
+
+        flash("Usuário alterado com sucesso!")->success();
+        return redirect('dashboard/users');
     }
 
     /**
@@ -99,7 +128,20 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($id == Auth::user()->id) {
+            flash("Você não pode deletar você mesmo")->info();
+            return redirect()->back();
+        } else {
+            User::findOrFail($id)->delete();
+            flash("Usuário deletado.")->success();
+            return redirect()->back();
+        }
+    }
+
+    public function profile()
+    {
+        $user =  User::findOrFail(Auth::user()->id);
+        return view('admin.profile.index', compact('user'));
     }
 
     public function profileupd(ProfileReq $request)

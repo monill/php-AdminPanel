@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Visitor;
+use Illuminate\Support\Facades\DB;
 
-class VisitorsController extends Controller
+class VisitorController extends Controller
 {
     public function index()
     {
@@ -18,8 +18,6 @@ class VisitorsController extends Controller
     public function trunk()
     {
         $year = date('Y');
-        if ($year > $year) {
-            \DB::table('visitors')->truncate();
-        }
+        return DB::table('visitors')->whereYear('created_at', '<', $year)->delete();
     }
 }
