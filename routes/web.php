@@ -28,15 +28,15 @@ Route::namespace('Admin')->group(function() {
 
         ##Dashboard
         Route::get('/', 'DashboardController@index');
+
         ##Blog
         Route::resource('blogs', 'BlogController', ['except' => ['show']]);
+
         ##Blog Categories
         Route::resource('blogcategs', 'BlogCategoryController', ['except' => ['create', 'show', 'edit']]);
+
         ##Blog Categories
         Route::resource('services', 'ServiceController', ['except' => ['show']]);
-
-
-
 
         ##Profile
         Route::get('profile', 'UserController@profile');
@@ -56,9 +56,11 @@ Route::namespace('Admin')->group(function() {
         Route::resource('roles', 'RoleController', ['except' => ['show']]);
         Route::resource('perms', 'PermController', ['except' => ['create', 'show', 'edit']]);
 
-
         ##Logs
         Route::get('logs', 'LogController@index');
+
+        ##Clear cache
+        Route::get('clearcache', 'DashboardController@cleanCache');
 
     });
 });
