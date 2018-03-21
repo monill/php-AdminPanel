@@ -21,11 +21,18 @@ use Zizaco\Entrust\EntrustRole;
  */
 class Role extends EntrustRole
 {
+    protected $table = 'roles';
+
 	protected $fillable = [
 		'name',
 		'display_name',
 		'description'
 	];
+
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
 
 	public function permissions()
 	{
@@ -34,6 +41,6 @@ class Role extends EntrustRole
 
 	public function users()
 	{
-		return $this->belongsToMany(\App\Models\User::class);
+		return $this->belongsToMany(\App\User::class);
 	}
 }

@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,14 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('admin.services.index');
+        if (Auth::user()->can('viewservices')) {
+
+            return view('admin.services.index');
+        } else {
+            Log::newLog("Usuário tentou acesso area restrita - SERVICES, user: " . Auth::user()->name);
+            return view('admin.layout.403');
+        }
+
     }
 
     /**

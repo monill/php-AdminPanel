@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- * Date: Mon, 19 Mar 2018 14:58:26 -0300.
- */
-
 namespace App\Models;
 
 use Zizaco\Entrust\EntrustPermission;
@@ -25,11 +20,18 @@ use Zizaco\Entrust\EntrustPermission;
  */
 class Permission extends EntrustPermission
 {
+    protected $table = 'permissions';
+
 	protected $fillable = [
 		'name',
 		'display_name',
 		'description'
 	];
+
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
 
 	public function roles()
 	{

@@ -10,7 +10,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon.png') }}">
 
         <!-- Bootstrap Core CSS -->
         <link href="{{ asset('admin/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -51,6 +51,6 @@
         <script src="{{ asset('admin/js/waves.js') }}"></script>
         <!-- Custom Theme JavaScript -->
         <script src="{{ asset('admin/js/custom.min.js') }}"></script>
-        
+
     </body>
 </html>

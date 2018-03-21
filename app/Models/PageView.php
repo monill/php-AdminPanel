@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- * Date: Mon, 19 Mar 2018 14:58:26 -0300.
- */
-
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
@@ -23,6 +18,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class PageView extends Eloquent
 {
+    protected $table = 'page_views';
+
 	public $timestamps = false;
 
 	protected $dates = [

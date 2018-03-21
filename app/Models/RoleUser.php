@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- * Date: Mon, 19 Mar 2018 14:58:26 -0300.
- */
-
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
@@ -38,6 +33,6 @@ class RoleUser extends Eloquent
 
 	public function user()
 	{
-		return $this->belongsTo(\App\Models\User::class);
+		return $this->belongsTo(\App\User::class);
 	}
 }

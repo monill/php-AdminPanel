@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Artisan;
 
 class DashboardController extends Controller
 {
+
     public function __construct()
     {
-
+        $this->middleware('auth');
     }
 
     public function index()
@@ -21,7 +22,7 @@ class DashboardController extends Controller
         $visitors = Visitor::count();
         $blogs = Blog::count();
         $services = Service::count();
-        $users = User::count();
+        $users = User::where('class', '!=', 'sysop')->count();
 
         return view('admin.dashboard', compact('visitors', 'blogs', 'services', 'users'));
     }
@@ -43,6 +44,6 @@ class DashboardController extends Controller
         //Clear Config cache:
         Artisan::call('config:cache');
 
-        return redirect()->back();
+        return redirect('/dashboard');
     }
 }

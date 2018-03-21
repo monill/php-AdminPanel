@@ -1,14 +1,9 @@
 <?php
 
-/**
- * Created by Reliese Model.
- * Date: Mon, 19 Mar 2018 14:58:26 -0300.
- */
-
 namespace App\Models;
 
-use App\BrowserDetection;
 use Reliese\Database\Eloquent\Model as Eloquent;
+use App\BrowserDetection;
 
 /**
  * Class Log
@@ -25,6 +20,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Log extends Eloquent
 {
+    protected $table = 'logs';
+
 	protected $fillable = [
 		'content',
 		'ip',
@@ -32,10 +29,14 @@ class Log extends Eloquent
 		'os_system'
 	];
 
-	public static function newLog($content)
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
+
+    public static function newLog($content)
     {
         $broser = new BrowserDetection();
-
         return Log::create([
             'content' => $content,
             'ip' => getIP(),

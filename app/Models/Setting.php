@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- * Date: Mon, 19 Mar 2018 14:58:26 -0300.
- */
-
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
@@ -43,7 +38,9 @@ class Setting extends Eloquent
 {
 	public $timestamps = false;
 
-	protected $casts = [
+    protected $table = 'settings';
+
+    protected $casts = [
 		'geolat' => 'float',
 		'geolng' => 'float'
 	];
@@ -73,4 +70,9 @@ class Setting extends Eloquent
 		'social_skype',
 		'social_instagram'
 	];
+
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
 }

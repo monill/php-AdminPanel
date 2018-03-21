@@ -15,7 +15,7 @@
                 <hr />
                 @include('admin.layout.errors')
                 @include('flash::message')
-                <br>
+                <br />
                 {!! Form::open(['url' => 'dashboard/settings']) !!}
                 <section>
                     <div class="sttabs tabs-style-bar">

@@ -48,9 +48,6 @@
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable({
-                "order": [
-                    [2, "desc"]
-                ],
                 "displayLength": 25
             });
         } );

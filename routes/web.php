@@ -54,7 +54,7 @@ Route::namespace('Admin')->group(function() {
 
         ##Roles
         Route::resource('roles', 'RoleController', ['except' => ['show']]);
-        Route::resource('perms', 'PermController', ['except' => ['create', 'show', 'edit']]);
+        Route::resource('permissions', 'PermController', ['except' => ['create', 'show', 'edit']]);
 
         ##Logs
         Route::get('logs', 'LogController@index');

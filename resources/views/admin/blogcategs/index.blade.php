@@ -7,7 +7,6 @@
             <div class="white-box">
                 <h3 class="box-title">Categorias</h3>
                 <p class="text-muted">Todas as categorias</p>
-
                 @include('flash::message')
                 <div class="table-responsive">
                     <table class="table">
@@ -36,10 +35,15 @@
 
                                 <td class="text-nowrap">
                                     <div class="row">
+                                        @permission('editblogcatg')
                                         <a href="#" data-toggle="modal" data-original-title="Editar" data-target="#modal-{{ $categ->id }}"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                        @endpermission()
+
+                                        @permission('deleteblogcatg')
                                         {!! Form::open(['url' => 'dashboard/blogcategs/' . $categ->id, 'method' => 'DELETE']) !!}
                                         <a href="#" onclick="$(this).closest('form').submit();"> <i class="fa fa-close text-danger"></i> </a>
                                         {!! Form::close() !!}
+                                        @endpermission()
                                     </div>
                                 </td>
                             </tr>
@@ -64,6 +68,7 @@
                             <h4 class="modal-title">Editar categoria</h4>
                         </div>
                         <div class="modal-body">
+                            @permission('editblogcatg')
                             {!! Form::open(['url' => 'dashboard/blogcategs/' . $categ->id, 'method' => 'PUT']) !!}
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Nome:</label>
@@ -72,6 +77,7 @@
                             <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
                             <button type="submit" class="btn btn-danger waves-effect waves-light">Salvar</button>
                             {!! Form::close() !!}
+                            @endpermission()
                         </div>
                     </div>
                 </div>
@@ -85,6 +91,7 @@
                 <p class="text-muted">Adicionar categoria</p>
                 @include('admin.layout.errors')
                 <br />
+                @permission('createblogcatg'))
                 {!! Form::open(['url' => 'dashboard/blogcategs', 'class' => 'form-horizontal form-label-left']) !!}
                     <div class="form-group">
                         {!! Form::label('name', 'Categoria:', ['class' => 'control-label col-md-2 col-sm-3 col-xs-12']) !!}
@@ -94,6 +101,7 @@
                         {!! Form::submit('Adicionar', ['class' => 'btn btn-rounded btn-success']) !!}
                     </div>
                 {!! Form::close() !!}
+                @endpermission()
             </div>
         </div>
     </div>

@@ -16,6 +16,8 @@
                         <tr>
                             <th>IP</th>
                             <th>País</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
                             <th>OS</th>
                             <th>Browser</th>
                             <th>Retornou</th>
@@ -29,6 +31,8 @@
                             <tr>
                                 <td>{{ $visitor->ip }}</td>
                                 <td>{{ $visitor->country }}</td>
+                                <td>{{ $visitor->city }}</td>
+                                <td>{{ $visitor->estate }}</td>
                                 <td>{{ $visitor->os_system }}</td>
                                 <td>{{ $visitor->browser }}</td>
                                 <td>{{ $visitor->has_returned ? 'Sim' : 'Nao' }}</td>

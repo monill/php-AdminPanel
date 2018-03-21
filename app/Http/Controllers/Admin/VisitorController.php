@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class VisitorController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         if (Auth::user()->can('viewvisitors')) {

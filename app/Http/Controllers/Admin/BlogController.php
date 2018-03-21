@@ -11,17 +11,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 
-
 class BlogController extends Controller
 {
+
     public function __construct()
     {
-
+        $this->middleware('auth');
     }
 
     public function index()
     {
-        if (Auth::user()->can('viewusers')) {
+        if (Auth::user()->can('viewblog')) {
             $blogs = Blog::paginate(15);
             return view('admin.blogs.index', compact('blogs'));
         } else {

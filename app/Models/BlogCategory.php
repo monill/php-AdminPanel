@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- * Date: Mon, 19 Mar 2018 14:58:26 -0300.
- */
-
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
@@ -23,9 +18,16 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class BlogCategory extends Eloquent
 {
+    protected $table = 'blog_categories';
+
 	protected $fillable = [
 		'name'
 	];
+
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
 
 	public function blogs()
 	{

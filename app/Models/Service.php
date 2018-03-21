@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- * Date: Mon, 19 Mar 2018 14:58:26 -0300.
- */
-
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
@@ -27,9 +22,16 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Service extends Eloquent
 {
+    protected $table = 'services';
+
 	protected $casts = [
 		'views' => 'int'
 	];
+
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
 
 	protected $fillable = [
 		'title',

@@ -17,6 +17,8 @@ class CreateVisitorsTable extends Migration
             $table->increments('id');
             $table->string('ip', 70);
             $table->string('country', 45);
+            $table->string('city', 100);
+            $table->string('estate', 100);
             $table->string('os_system', 100);
             $table->string('browser');
             $table->boolean('has_returned')->default('0');

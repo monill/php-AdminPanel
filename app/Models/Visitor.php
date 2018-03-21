@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- * Date: Mon, 19 Mar 2018 14:58:26 -0300.
- */
-
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
@@ -15,6 +10,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $id
  * @property string $ip
  * @property string $country
+ * @property string $city
+ * @property string $estate
  * @property string $os_system
  * @property string $browser
  * @property bool $has_returned
@@ -26,7 +23,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Visitor extends Eloquent
 {
-	protected $casts = [
+    protected $table = 'visitors';
+
+    protected $casts = [
 		'has_returned' => 'bool',
 		'access' => 'int'
 	];
@@ -34,9 +33,16 @@ class Visitor extends Eloquent
 	protected $fillable = [
 		'ip',
 		'country',
+		'city',
+		'estate',
 		'os_system',
 		'browser',
 		'has_returned',
 		'access'
 	];
+
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
 }

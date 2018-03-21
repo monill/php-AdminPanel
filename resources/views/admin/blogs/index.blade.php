@@ -9,9 +9,11 @@
                 <div class="form-inline padding-bottom-15">
                     <div class="row">
                         <div class="col-sm-6">
+                            @permission('createblog')
                             <div class="form-group">
                                 <a href="{{ url('dashboard/blogs/create') }}" class="btn btn-outline btn-primary btn-sm">Add new</a>
                             </div>
+                            @endpermission()
                         </div>
                     </div>
                 </div>
@@ -36,11 +38,15 @@
                                 <td>{{ $blog->created_at->format('d-m-Y') }}</td>
                                 <td class="text-nowrap">
                                     <div class="row">
+                                        @permission('editblog')
                                         <a href="{{ url('dashboard/blogs/' . $blog->id . '/edit') }}" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                        @endpermission()
 
+                                        @permission('deleteblog')
                                         {!! Form::open(['url' => 'dashboard/blogs/' . $blog->id, 'method' => 'DELETE']) !!}
                                         <a href="#" data-toggle="tooltip" data-original-title="Deletar" onclick="$(this).closest('form').submit();"> <i class="fa fa-close text-danger"></i> </a>
                                         {!! Form::close() !!}
+                                        @endpermission()
                                     </div>
                                 </td>
                             </tr>

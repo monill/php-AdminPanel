@@ -33,8 +33,8 @@
                             <tr>
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->name }}</td>
-                                <td>{{ $role->display_name }}</td>
-                                <td><span class="label label-warning">{{ $role->users->count() }}</span></td>
+                                <td>{{ $role->description }}</td>
+                                <td><span class="label label-info">{{ $role->users->count() }}</span></td>
 
                                 <td class="text-nowrap">
                                     <div class="row">

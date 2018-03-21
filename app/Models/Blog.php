@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- * Date: Mon, 19 Mar 2018 14:58:26 -0300.
- */
-
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
@@ -27,12 +22,14 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $updated_at
  * 
  * @property \App\Models\BlogCategory $blog_category
- * @property \App\Models\User $user
+ * @property \App\Models\Blog $blog
  *
  * @package App\Models
  */
 class Blog extends Eloquent
 {
+    protected $table = 'blogs';
+
 	protected $casts = [
 		'user_id' => 'int',
 		'category_id' => 'int',
@@ -52,6 +49,11 @@ class Blog extends Eloquent
 		'views'
 	];
 
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
+
 	public function blog_category()
 	{
 		return $this->belongsTo(\App\Models\BlogCategory::class, 'category_id');
@@ -59,6 +61,6 @@ class Blog extends Eloquent
 
 	public function user()
 	{
-		return $this->belongsTo(\App\Models\User::class);
+		return $this->belongsTo(\App\User::class);
 	}
 }

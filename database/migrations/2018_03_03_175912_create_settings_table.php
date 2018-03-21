@@ -44,6 +44,8 @@ class CreateSettingsTable extends Migration
             $table->string('social_youtube')->nullable();
             $table->string('social_skype')->nullable();
             $table->string('social_instagram')->nullable();
+
+            $table->timestamps();
         });
     }
 

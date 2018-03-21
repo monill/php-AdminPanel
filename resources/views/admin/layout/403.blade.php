@@ -32,7 +32,7 @@
         <div class="error-box">
             <div class="error-body text-center">
                 <h1>403</h1>
-                <h3 class="text-uppercase">Erro = Proibido acesso</h3>
+                <h3 class="text-uppercase">Erro. Acesso Negado</h3>
                 <p class="text-muted m-t-30 m-b-30 text-uppercase">Você não tem permissão para acessar essa página.</p>
                 <a href="{{ url('dashboard') }}" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Voltar para início</a> </div>
             <footer class="footer text-center">Copyright - {{ date('Y') }}</footer>

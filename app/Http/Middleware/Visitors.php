@@ -29,6 +29,8 @@ class Visitors
                 Visitor::create([
                     'ip' => $clientIP,
                     'country' => isset($client['country']) ? $client['country'] : '',
+                    'city' => isset($client['city']) ? $client['city'] : '',
+                    'estate' => isset($client['regionName']) ? $client['regionName'] : '',
                     'os_system' => $broser->getPlatformVersion(),
                     'browser' => $broser->getName()
                 ]);

@@ -14,16 +14,12 @@
                 <ul class="dropdown-menu animated flipInY">
                     <li><a href="{{ url('dashboard/profile') }}"><i class="ti-settings"></i>Perfil</a></li>
                     <li role="separator" class="divider"></li>
-
                     <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa fa-power-off"></i> Logout
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                        {!! Form::open(['url' => 'logout', 'id' => 'logout-form', 'style' => 'display: nome']) !!}
+                        {!! Form::close() !!}
                     </li>
                 </ul>
             </div>
@@ -31,59 +27,53 @@
 
         <ul class="nav" id="side-menu">
             <li class="nav-small-cap m-t-10">--- Main Menu</li>
-            <li>
-                <a href="{{ url('dashboard') }}" class="waves-effect"> <i class="linea-icon linea-basic fa-fw" data-icon="v"></i>Dashboard</a>
-            </li>
+            <li> <a href="{{ url('dashboard') }}" class="waves-effect"> <i class="linea-icon linea-basic fa-fw" data-icon="v"></i><span class="hide-menu">Dashboard</span></a> </li>
 
             <li class="nav-small-cap">--- Proffessional</li>
 
-            <li>
-                <a href="{{ url('dashboard/blogs') }}" class="waves-effect"> <i class="icon-list fa-fw"></i>Blogs</a>
-            </li>
+            <li> <a href="{{ url('dashboard/blogs') }}" class="waves-effect"> <i class="icon-list fa-fw"></i><span class="hide-menu">Blogs</span></a> </li>
 
-            <li>
-                <a href="{{ url('dashboard/blogcategs') }}" class="waves-effect"> <i class="icon-docs fa-fw"></i>Blog categorias</a>
-            </li>
+            <li> <a href="{{ url('dashboard/blogcategs') }}" class="waves-effect"> <i class="icon-docs fa-fw"></i><span class="hide-menu">Blog categorias</span></a> </li>
 
-            <li>
-                <a href="{{ url('dashboard/services') }}" class="waves-effect"> <i class="linea-icon icon-list linea-basic fa-fw"></i>Serviços</a>
-            </li>
+            <li> <a href="{{ url('dashboard/services') }}" class="waves-effect"> <i class="linea-icon icon-list linea-basic fa-fw"></i><span class="hide-menu">Serviços</span></a> </li>
 
+            @permission('viewsettings')
             <li class="nav-small-cap">--- Configs</li>
+            @endpermission()
 
-            <li>
-                <a href="{{ url('dashboard/settings') }}" class="waves-effect"> <i data-icon="P" class="linea-icon linea-basic fa-fw"></i>Configurações</a>
-            </li>
+            @permission('viewsettings')
+            <li> <a href="{{ url('dashboard/settings') }}" class="waves-effect"> <i data-icon="P" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Configurações</span></a> </li>
+            @endpermission()
 
-            <li>
-                <a href="{{ url('dashboard/users') }}" class="waves-effect"><i class="fa fa-users"></i>Usuários</a>
-            </li>
+            @permission('viewusers')
+            <li> <a href="{{ url('dashboard/users') }}" class="waves-effect"><i class="fa fa-users"></i><span class="hide-menu">Usuários</span></a> </li>
+            @endpermission()
 
-            <li>
-                <a href="{{ url('dashboard/visitors') }}" class="waves-effect"><i class="fa fa-cloud"></i>Visitantes</a>
-            </li>
+            @permission('viewvisitors')
+            <li> <a href="{{ url('dashboard/visitors') }}" class="waves-effect"><i class="fa fa-cloud"></i><span class="hide-menu">Visitantes</span></a> </li>
+            @endpermission()
 
+            @permission('viewroles')
             <li><a href="javascript:void(0);" class="waves-effect"><i data-icon=")" class="icon-docs fa-fw"></i> <span class="hide-menu">Regras<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li> <a href="{{ url('dashboard/roles') }}">Regras</a></li>
                     <li> <a href="{{ url('dashboard/perms') }}">Permissões</a></li>
                 </ul>
             </li>
+            @endpermission()
 
-            <li>
-                <a href="{{ url('dashboard/logs') }}" class="waves-effect"> <i class="ti-tag"></i>Logs</a>
-            </li>
+            @permission('viewlogs')
+            <li> <a href="{{ url('dashboard/logs') }}" class="waves-effect"> <i class="ti-tag"></i><span class="hide-menu">Logs</span></a> </li>
+            @endpermission()
 
-            <li>
-                <a href="{{ url('dashboard/clearcache') }}" class="waves-effect"> <i class="icon-handbag fa-fw"></i>Limpar cache</a>
-            </li>
+            @permission('clearcache')
+            <li> <a href="{{ url('dashboard/clearcache') }}" class="waves-effect"> <i class="icon-handbag fa-fw"></i><span class="hide-menu">Limpar cache</span></a> </li>
+            @endpermission()
 
             <li class="nav-small-cap">--- Logout</li>
 
             <li>
-                <a class="waves-effect" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
+                <a class="waves-effect" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="icon-logout fa-fw"></i> <span class="hide-menu">Logout</span>
                 </a>
             </li>

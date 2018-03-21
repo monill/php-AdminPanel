@@ -18,30 +18,39 @@ use Intervention\Image\ImageManagerStatic as Image;
 class UserController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        if (Auth::user()->can('viewusers')) {
+//        if (Auth::user()->can('viewusers')) {
             if (Auth::user()->class == 'sysop') {
                 $users = User::all();
             } else {
                 $users = DB::table('users')->where('class', '!=', 'sysop')->get();
             }
             return view('admin.users.index', compact('users'));
-        } else {
-            Log::newLog("Usuário tentou acesso area restrita USERS, user: " . Auth::user()->name);
-            return view('admin.layout.403');
-        }
+//        } else {
+//            Log::newLog("Usuário tentou acesso area restrita USERS, user: " . Auth::user()->name);
+//            return view('admin.layout.403');
+//        }
     }
 
     public function create()
     {
-        if (Auth::user()->can('createusers')) {
-            $roles = Role::pluck('name', 'id')->all();
+//        if (Auth::user()->can('createusers')) {
+            if (Auth::user()->class == 'sysop') {
+                $roles = Role::pluck('name', 'id')->all();
+            } else {
+                $roles = Role::where('name', '!=', 'Sysop')->pluck('name', 'id')->all();
+            }
             return view('admin.users.add', compact('roles'));
-        } else {
-            Log::newLog("Usuário tentou criar area restrita USERS, user: " . Auth::user()->name);
-            return view('admin.layout.403');
-        }
+//        } else {
+//            Log::newLog("Usuário tentou criar area restrita USERS, user: " . Auth::user()->name);
+//            return view('admin.layout.403');
+//        }
     }
 
     public function store(AddUserReq $request)
@@ -63,16 +72,16 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        if (Auth::user()->can('editusers')) {
+//        if (Auth::user()->can('editusers')) {
             $user = User::findOrFail($id);
             $roles = Role::pluck('name', 'id')->all();
             $userRole = $user->roles->pluck('id', $id)->all();
 
             return view('admin.users.edit', compact('user', 'roles', 'userRole'));
-        } else {
-            Log::newLog("Usuário tentou editar area restrita USERS-$id, user: " . Auth::user()->name);
-            return view('admin.layout.403');
-        }
+//        } else {
+//            Log::newLog("Usuário tentou editar area restrita USERS-$id, user: " . Auth::user()->name);
+//            return view('admin.layout.403');
+//        }
     }
 
 

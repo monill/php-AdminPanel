@@ -9,7 +9,7 @@
                 <p class="text-muted">Adicionar permissões</p>
                 @include('admin.layout.errors')
                 <br />
-                {!! Form::open(['url' => 'dashboard/perms', 'class' => 'form-horizontal']) !!}
+                {!! Form::open(['url' => 'dashboard/permissions', 'class' => 'form-horizontal']) !!}
 
                     <div class="form-group">
                         {!! Form::label('name', 'Nome:', ['class' => 'col-md-7']) !!}
@@ -57,13 +57,13 @@
                             <tr>
                                 <td>{{ $perm->id }}</td>
                                 <td>{{ $perm->name }}</td>
-                                <td>{{ $perm->display_name }}</td>
+                                <td>{{ $perm->description }}</td>
 
                                 <td class="text-nowrap">
                                     <div class="row">
                                         <a href="#" data-toggle="modal" data-original-title="Editar" data-target="#modal-{{ $perm->id }}"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
 
-                                        {!! Form::open(['url' => 'dashboard/perms/' . $perm->id, 'method' => 'DELETE']) !!}
+                                        {!! Form::open(['url' => 'dashboard/permissions/' . $perm->id, 'method' => 'DELETE']) !!}
                                         <a href="#" data-toggle="tooltip" data-original-title="Deletar" onclick="$(this).closest('form').submit();"> <i class="fa fa-close text-danger"></i> </a>
                                         {!! Form::close() !!}
                                     </div>
@@ -90,7 +90,7 @@
                             <h4 class="modal-title">Editar permissão</h4>
                         </div>
                         <div class="modal-body">
-                            {!! Form::open(['url' => 'dashboard/perms/' . $perm->id, 'method' => 'PUT']) !!}
+                            {!! Form::open(['url' => 'dashboard/permissions/' . $perm->id, 'method' => 'PUT']) !!}
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Nome:</label>
                                 <input type="text" class="form-control" name="name" value="{{ $perm->name }}" id="recipient-name">
