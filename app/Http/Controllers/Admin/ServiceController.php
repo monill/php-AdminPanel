@@ -22,11 +22,11 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->can('viewservices')) {
-
+        if (Auth::user()->can('r-services'))
+        {
             return view('admin.services.index');
         } else {
-            Log::newLog("Usuário tentou acesso area restrita - SERVICES, user: " . Auth::user()->name);
+            Log::newLog("Usuário tentou acessoar: R-SERVICES, user: " . Auth::user()->name);
             return view('admin.layout.403');
         }
 

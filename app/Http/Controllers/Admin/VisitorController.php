@@ -18,12 +18,13 @@ class VisitorController extends Controller
 
     public function index()
     {
-        if (Auth::user()->can('viewvisitors')) {
+        if (Auth::user()->can('r-visitors'))
+        {
             $this->trunk();
             $visitors = Visitor::all();
             return view('admin.visitors.index', compact('visitors'));
         } else {
-            Log::newLog("Usuário tentou acesso area restrita VISITORS, user: " . Auth::user()->name);
+            Log::newLog("Usuário tentou acessar: R*VISITORS, user: " . Auth::user()->name);
             return view('admin.layout.403');
         }
     }

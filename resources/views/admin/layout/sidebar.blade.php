@@ -37,23 +37,21 @@
 
             <li> <a href="{{ url('dashboard/services') }}" class="waves-effect"> <i class="linea-icon icon-list linea-basic fa-fw"></i><span class="hide-menu">Serviços</span></a> </li>
 
-            @permission('viewsettings')
+            @permission('r-settings')
             <li class="nav-small-cap">--- Configs</li>
-            @endpermission()
 
-            @permission('viewsettings')
             <li> <a href="{{ url('dashboard/settings') }}" class="waves-effect"> <i data-icon="P" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Configurações</span></a> </li>
             @endpermission()
 
-            @permission('viewusers')
+            @permission('r-users')
             <li> <a href="{{ url('dashboard/users') }}" class="waves-effect"><i class="fa fa-users"></i><span class="hide-menu">Usuários</span></a> </li>
             @endpermission()
 
-            @permission('viewvisitors')
+            @permission('r-visitors')
             <li> <a href="{{ url('dashboard/visitors') }}" class="waves-effect"><i class="fa fa-cloud"></i><span class="hide-menu">Visitantes</span></a> </li>
             @endpermission()
 
-            @permission('viewroles')
+            @permission('r-roles')
             <li><a href="javascript:void(0);" class="waves-effect"><i data-icon=")" class="icon-docs fa-fw"></i> <span class="hide-menu">Regras<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li> <a href="{{ url('dashboard/roles') }}">Regras</a></li>
@@ -62,7 +60,7 @@
             </li>
             @endpermission()
 
-            @permission('viewlogs')
+            @permission('r-logs')
             <li> <a href="{{ url('dashboard/logs') }}" class="waves-effect"> <i class="ti-tag"></i><span class="hide-menu">Logs</span></a> </li>
             @endpermission()
 

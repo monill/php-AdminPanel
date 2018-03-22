@@ -19,9 +19,9 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('display_name', 'Descrição:', ['class' => 'col-md-7']) !!}
+                        {!! Form::label('description', 'Descrição:', ['class' => 'col-md-7']) !!}
                         <div class="col-md-7">
-                            {!! Form::text('display_name', null, ['class' => 'form-control', 'placeholder' => 'Descrição']) !!}
+                            {!! Form::text('description', null, ['class' => 'form-control', 'placeholder' => 'Descrição']) !!}
                         </div>
                     </div>
 
@@ -96,8 +96,8 @@
                                 <input type="text" class="form-control" name="name" value="{{ $perm->name }}" id="recipient-name">
                             </div>
                             <div class="form-group">
-                                <label for="display_name" class="control-label">Descrição:</label>
-                                <input type="text" class="form-control" name="display_name" value="{{ $perm->display_name }}" id="recipient-name">
+                                <label for="description" class="control-label">Descrição:</label>
+                                <input type="text" class="form-control" name="description" value="{{ $perm->display_name }}" id="recipient-name">
                             </div>
                             <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
                             <button type="submit" class="btn btn-danger waves-effect waves-light">Salvar</button>

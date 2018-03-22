@@ -21,11 +21,13 @@ class BlogController extends Controller
 
     public function index()
     {
-        if (Auth::user()->can('viewblog')) {
+        if (Auth::user()->can('r-blog'))
+        {
             $blogs = Blog::paginate(15);
             return view('admin.blogs.index', compact('blogs'));
+
         } else {
-            Log::newLog("Usuário tentou acesso area restrita - BLOG, user: " . Auth::user()->name);
+            Log::newLog("Usuário tentou acessar: R-BLOG, user: " . Auth::user()->name);
             return view('admin.layout.403');
         }
     }
@@ -33,11 +35,13 @@ class BlogController extends Controller
 
     public function create()
     {
-        if (Auth::user()->can('createblog')) {
+        if (Auth::user()->can('c-blog'))
+        {
             $categs = BlogCategory::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
             return view('admin.blogs.add', compact('categs'));
+
         } else {
-            Log::newLog("Usuário tentou criar area restrita - BLOG, user: " . Auth::user()->name);
+            Log::newLog("Usuário tentou criar: C-BLOG, user: " . Auth::user()->name);
             return view('admin.layout.403');
         }
     }
@@ -81,12 +85,14 @@ class BlogController extends Controller
 
     public function edit($id)
     {
-        if (Auth::user()->can('editblog')) {
+        if (Auth::user()->can('u-blog'))
+        {
             $blog = Blog::findOrFail($id);
             $categs = BlogCategory::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
             return view('admin.blogs.edit', compact('blog', 'categs'));
+
         } else {
-            Log::newLog("Usuário tentou editar area restrita BLOG-$id, user: " . Auth::user()->name);
+            Log::newLog("Usuário tentou editar: U-BLOG-{$id}, user: " . Auth::user()->name);
             return view('admin.layout.403');
         }
     }
@@ -129,7 +135,7 @@ class BlogController extends Controller
 
         $blog->update();
 
-        Log::newLog("Usuário alterou blog-$id, user: " . Auth::user()->name);
+        Log::newLog("Usuário alterou blog-{$id}, user: " . Auth::user()->name);
 
         flash('Blog atualizado com sucesso!')->success();
         return redirect('dashboard/blogs');
@@ -137,7 +143,8 @@ class BlogController extends Controller
 
     public function destroy($id)
     {
-        if (Auth::user()->can('deleteblog')) {
+        if (Auth::user()->can('d-blog'))
+        {
             $blog = Blog::findOrFail($id);
 
             \File::delete(public_path('uploads/blogs/big/' . $blog->image));
@@ -146,12 +153,13 @@ class BlogController extends Controller
 
             $blog->delete();
 
-            Log::newLog("Usuário deletou blog-$id, user: " . Auth::user()->name);
+            Log::newLog("Usuário deletou blog-{$id}, user: " . Auth::user()->name);
 
-            flash("Blog: {$blog->title} foi deletado!", 'warning');
+            flash("Blog: {$blog->title} foi deletado!")->warning();
             return redirect('dashboard/blogs');
+
         } else {
-            Log::newLog("Usuário tentou deletar area restrita BLOG-$id, user: " . Auth::user()->name);
+            Log::newLog("Usuário tentou deletar: BLOG-{$id}, user: " . Auth::user()->name);
             return view('admin.layout.403');
         }
     }

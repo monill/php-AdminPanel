@@ -25,32 +25,34 @@ class UserController extends Controller
 
     public function index()
     {
-//        if (Auth::user()->can('viewusers')) {
+        if (Auth::user()->can('r-users'))
+        {
             if (Auth::user()->class == 'sysop') {
                 $users = User::all();
             } else {
                 $users = DB::table('users')->where('class', '!=', 'sysop')->get();
             }
             return view('admin.users.index', compact('users'));
-//        } else {
-//            Log::newLog("Usuário tentou acesso area restrita USERS, user: " . Auth::user()->name);
-//            return view('admin.layout.403');
-//        }
+        } else {
+            Log::newLog("Usuário tentou acessar: R-USERS, user: " . Auth::user()->name);
+            return view('admin.layout.403');
+        }
     }
 
     public function create()
     {
-//        if (Auth::user()->can('createusers')) {
+        if (Auth::user()->can('c-users'))
+        {
             if (Auth::user()->class == 'sysop') {
                 $roles = Role::pluck('name', 'id')->all();
             } else {
                 $roles = Role::where('name', '!=', 'Sysop')->pluck('name', 'id')->all();
             }
             return view('admin.users.add', compact('roles'));
-//        } else {
-//            Log::newLog("Usuário tentou criar area restrita USERS, user: " . Auth::user()->name);
-//            return view('admin.layout.403');
-//        }
+        } else {
+            Log::newLog("Usuário tentou criar: C-USERS, user: " . Auth::user()->name);
+            return view('admin.layout.403');
+        }
     }
 
     public function store(AddUserReq $request)
@@ -72,16 +74,17 @@ class UserController extends Controller
 
     public function edit($id)
     {
-//        if (Auth::user()->can('editusers')) {
+        if (Auth::user()->can('u-users'))
+        {
             $user = User::findOrFail($id);
             $roles = Role::pluck('name', 'id')->all();
             $userRole = $user->roles->pluck('id', $id)->all();
 
             return view('admin.users.edit', compact('user', 'roles', 'userRole'));
-//        } else {
-//            Log::newLog("Usuário tentou editar area restrita USERS-$id, user: " . Auth::user()->name);
-//            return view('admin.layout.403');
-//        }
+        } else {
+            Log::newLog("Usuário tentou editar: U-USERS-$id, user: " . Auth::user()->name);
+            return view('admin.layout.403');
+        }
     }
 
 
@@ -100,7 +103,7 @@ class UserController extends Controller
 
         $user->attachRole($request->get('role'));
 
-        Log::newLog("Usuário alterou/criou conta, user: " . Auth::user()->name);
+        Log::newLog("Usuário alterou conta-{$id}, user: " . Auth::user()->name);
 
         flash("Usuário alterado com sucesso!")->success();
         return redirect('dashboard/users');
@@ -108,19 +111,20 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        if (Auth::user()->can('deleteusers')) {
+        if (Auth::user()->can('d-users'))
+        {
             if ($id == Auth::user()->id) {
                 Log::newLog("Usuário tentou deletar propria conta, user: " . Auth::user()->name);
                 flash("Você não pode deletar você mesmo")->info();
                 return redirect()->back();
             } else {
                 User::findOrFail($id)->delete();
-                Log::newLog("Usuário deletou conta-$id, user: " . Auth::user()->name);
+                Log::newLog("Usuário deletou conta-{$id}, user: " . Auth::user()->name);
                 flash("Usuário deletado.")->success();
                 return redirect()->back();
             }
         } else {
-            Log::newLog("Usuário deletar acesso area restrita USERS-$id, user: " . Auth::user()->name);
+            Log::newLog("Usuário deletar conta: USERS-{$id}, user: " . Auth::user()->name);
             return view('admin.layout.403');
         }
     }
