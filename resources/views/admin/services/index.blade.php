@@ -9,7 +9,7 @@
                 <div class="form-inline padding-bottom-15">
                     <div class="row">
                         <div class="col-sm-6">
-                            @permission('createservices')
+                            @permission('c-services')
                             <div class="form-group">
                                 <a href="{{ url('dashboard/services/create') }}" class="btn btn-outline btn-primary btn-sm">Add new</a>
                             </div>

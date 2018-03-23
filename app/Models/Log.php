@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
 use App\BrowserDetection;
+use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Log
- * 
+ *
  * @property int $id
  * @property string $content
  * @property string $ip

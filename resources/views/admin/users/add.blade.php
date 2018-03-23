@@ -42,7 +42,7 @@
                 <div class="form-group">
                     {!! Form::label('class', 'Perfil:', ['class' => 'col-sm-12']) !!}
                     <div class="col-sm-6">
-                        {!! Form::select('class', ['admin' => 'Admin', 'user' => 'Usuário'], null, ['class' => 'custom-select col-md-7']) !!}
+                        {!! Form::select('class', ['admin' => 'Admin', 'user' => 'Usuario'], null, ['class' => 'custom-select col-md-7']) !!}
                     </div>
                 </div>
 

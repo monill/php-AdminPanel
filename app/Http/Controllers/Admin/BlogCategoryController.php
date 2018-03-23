@@ -19,7 +19,7 @@ class BlogCategoryController extends Controller
 
     public function index()
     {
-        if (Auth::user()->can('r-blogcatg'))
+        if (Auth::user()->can('r-blogcateg'))
         {
             $categs = BlogCategory::all();
             return view('admin.blogcategs.index', compact('categs'));
@@ -32,7 +32,7 @@ class BlogCategoryController extends Controller
 
     public function store(BlogCateg $request)
     {
-        if (Auth::user()->can('c-blogcatg'))
+        if (Auth::user()->can('c-blogcateg'))
         {
             $categ = new BlogCategory();
             $categ->name = $request->get('name');
@@ -50,7 +50,7 @@ class BlogCategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (Auth::user()->can('u-blogcatg'))
+        if (Auth::user()->can('u-blogcateg'))
         {
             $categ = BlogCategory::findOrFail($id);
             $categ->name = $request->get('name');
@@ -67,7 +67,7 @@ class BlogCategoryController extends Controller
 
     public function destroy($id)
     {
-        if (Auth::user()->can('d-blogcatg'))
+        if (Auth::user()->can('d-blogcateg'))
         {
             BlogCategory::findOrFail($id)->destroy($id);
             Log::newLog("Usuário deletou categoria-{$id}, user: " . Auth::user()->name);

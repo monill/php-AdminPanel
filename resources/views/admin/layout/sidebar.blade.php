@@ -55,7 +55,7 @@
             <li><a href="javascript:void(0);" class="waves-effect"><i data-icon=")" class="icon-docs fa-fw"></i> <span class="hide-menu">Regras<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li> <a href="{{ url('dashboard/roles') }}">Regras</a></li>
-                    <li> <a href="{{ url('dashboard/perms') }}">Permissões</a></li>
+                    <li> <a href="{{ url('dashboard/permissions') }}">Permissões</a></li>
                 </ul>
             </li>
             @endpermission()

@@ -28,8 +28,10 @@ class CreateBlogsTable extends Migration
             $table->unsignedSmallInteger('views')->default('0');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('blog_categories');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('blog_categories')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

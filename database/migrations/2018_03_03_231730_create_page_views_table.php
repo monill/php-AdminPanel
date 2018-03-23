@@ -15,11 +15,17 @@ class CreatePageViewsTable extends Migration
     {
         Schema::create('page_views', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('from_pid', 15);
+            $table->unsignedInteger('sid')->nullable();
+            $table->unsignedInteger('bid')->nullable();
             $table->string('from_ip', 70);
             $table->string('from_os', 100);
-            $table->string('from_wb');
+            $table->string('from_wb'); //WebBrowser
             $table->timestamps();
+
+            $table->foreign('sid')->references('id')->on('services')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('bid')->references('id')->on('blogs')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

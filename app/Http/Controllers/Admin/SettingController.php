@@ -21,7 +21,7 @@ class SettingController extends Controller
     {
         if (Auth::user()->can('r-settings'))
         {
-            $setting = Setting::findOrFail(1);
+            $setting = Setting::findOrFail('1');
             return view('admin.settings.index', compact('setting'));
         } else {
             Log::newLog("Usuário tentou acessar: R-SETTINGS, user: " . Auth::user()->name);

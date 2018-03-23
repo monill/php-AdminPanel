@@ -25,21 +25,17 @@
                                 <td>{{ $categ->name }}</td>
                                 <td>
                                     <span class="label label-warning">
-                                        @if($categ->blogs->count() <= 9)
-                                            0{{ $categ->blogs->count() }}
-                                        @else
-                                            {{ $categ->blogs->count() }}
-                                        @endif
+                                        {{ $categ->blogs->count() }}
                                     </span>
                                 </td>
 
                                 <td class="text-nowrap">
                                     <div class="row">
-                                        @permission('editblogcatg')
+                                        @permission('u-blogcateg')
                                         <a href="#" data-toggle="modal" data-original-title="Editar" data-target="#modal-{{ $categ->id }}"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                         @endpermission()
 
-                                        @permission('deleteblogcatg')
+                                        @permission('d-blogcateg')
                                         {!! Form::open(['url' => 'dashboard/blogcategs/' . $categ->id, 'method' => 'DELETE']) !!}
                                         <a href="#" onclick="$(this).closest('form').submit();"> <i class="fa fa-close text-danger"></i> </a>
                                         {!! Form::close() !!}
@@ -68,7 +64,7 @@
                             <h4 class="modal-title">Editar categoria</h4>
                         </div>
                         <div class="modal-body">
-                            @permission('editblogcatg')
+                            @permission('u-blogcateg')
                             {!! Form::open(['url' => 'dashboard/blogcategs/' . $categ->id, 'method' => 'PUT']) !!}
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Nome:</label>
@@ -91,7 +87,7 @@
                 <p class="text-muted">Adicionar categoria</p>
                 @include('admin.layout.errors')
                 <br />
-                @permission('createblogcatg'))
+                @permission('c-blogcateg')
                 {!! Form::open(['url' => 'dashboard/blogcategs', 'class' => 'form-horizontal form-label-left']) !!}
                     <div class="form-group">
                         {!! Form::label('name', 'Categoria:', ['class' => 'control-label col-md-2 col-sm-3 col-xs-12']) !!}

@@ -19,7 +19,7 @@ class LogController extends Controller
     {
         if (Auth::user()->can('r-logs'))
         {
-            $logs = DB::table('logs')->orderBy('created_at', 'desc')->get();;
+            $logs = Log::orderBy('created_at', 'desc')->get();;
             return view('admin.logs.index', compact('logs'));
 
         } else {

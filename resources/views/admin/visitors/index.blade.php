@@ -54,9 +54,7 @@
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable({
-                "order": [
-                    [2, "desc"]
-                ],
+                "order": [0, "desc"],
                 "displayLength": 25,
                 "searching": false,
                 "language": {
