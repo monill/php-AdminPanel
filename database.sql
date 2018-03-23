@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2018 at 01:03 AM
+-- Generation Time: Mar 23, 2018 at 09:35 PM
 -- Server version: 5.6.37
 -- PHP Version: 7.1.8
 
@@ -388,17 +388,27 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `avatar`, `description`,
 
 CREATE TABLE IF NOT EXISTS `visitors` (
   `id` int(10) unsigned NOT NULL,
-  `ip` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
-  `country` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `city` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `estate` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `os_system` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `browser` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ip` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `estate` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `os_system` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `browser` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `referrer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `full_link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `load_time` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `has_returned` tinyint(1) NOT NULL DEFAULT '0',
   `access` smallint(5) unsigned NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `visitors`
+--
+
+INSERT INTO `visitors` (`id`, `ip`, `country`, `city`, `estate`, `os_system`, `browser`, `referrer`, `full_link`, `load_time`, `has_returned`, `access`, `created_at`, `updated_at`) VALUES
+(1, '127.0.0.1', '', '', '', 'unknown', 'Opera', NULL, NULL, NULL, 1, 2, '2018-03-23 21:19:07', '2018-03-23 21:25:11');
 
 --
 -- Indexes for dumped tables
@@ -573,7 +583,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
