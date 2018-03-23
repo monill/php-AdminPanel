@@ -20,6 +20,7 @@ class Visitors
         $broser = new BrowserDetection();
         $clientIP = getIP();
         $client = json_decode(file_get_contents('http://ip-api.com/json/' . $clientIP), true);
+        $protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 
         if (!$request->session()->has('visitor.' . $clientIP)) {
 
@@ -27,12 +28,15 @@ class Visitors
 
             if ($visitor == null) {
                 Visitor::create([
-                    'ip' => $clientIP,
+                    'ip' => isset($clientIP) ? $clientIP : '',
                     'country' => isset($client['country']) ? $client['country'] : '',
                     'city' => isset($client['city']) ? $client['city'] : '',
                     'estate' => isset($client['regionName']) ? $client['regionName'] : '',
                     'os_system' => $broser->getPlatformVersion(),
-                    'browser' => $broser->getName()
+                    'browser' => $broser->getName(),
+                    'referrer' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'Desconhecido',
+                    'full_link' => $protocol .'/'. $_SERVER['HTTP_HOST'] .'/'. $_SERVER['REQUEST_URI'],
+                    'load_time' => round((microtime(true) - LARAVEL_START), 8)
                 ]);
             } else {
                 $visitor->browser = $broser->getName();
