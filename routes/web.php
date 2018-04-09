@@ -17,11 +17,9 @@ Route::middleware('visitors')->group(function () {
     });
 });
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::namespace('Admin')->group(function() {
     Route::prefix('dashboard')->group(function () {

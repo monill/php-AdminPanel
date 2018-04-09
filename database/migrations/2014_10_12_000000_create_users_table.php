@@ -21,6 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->text('description')->nullable();
             $table->enum('class', ['sysop', 'admin', 'user'])->default('user');
+            $table->string('about')->nullable();
+            $table->string('phone', 45)->nullable();
+            $table->string('facebook', 50)->nullable();
+            $table->string('twitter', 50)->nullable();
+            $table->string('gplus', 50)->nullable();
+            $table->string('linkedin', 50)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
