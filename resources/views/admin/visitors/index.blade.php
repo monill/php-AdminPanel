@@ -37,8 +37,8 @@
                                 <td>{{ $visitor->browser }}</td>
                                 <td>{{ $visitor->has_returned ? 'Sim' : 'Nao' }}</td>
                                 <td>{{ $visitor->access }}</td>
-                                <td>{{ $visitor->created_at->format('d-m-Y H:i') }}</td>
-                                <td>{{ $visitor->updated_at->format('d-m-Y H:i') }}</td>
+                                <td>{{ Carbon\Carbon::parse($visitor->created_at)->format('d-m-Y H:i') }}</td>
+                                <td>{{ Carbon\Carbon::parse($visitor->updated_at)->format('d-m-Y H:i') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -54,7 +54,6 @@
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable({
-                "order": [0, "desc"],
                 "displayLength": 25,
                 "searching": false,
                 "language": {

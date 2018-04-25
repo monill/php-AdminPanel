@@ -4,7 +4,8 @@ $.getJSON('api/os_usage', function (os_usage) {
         element: 'morris-os',
         data: os_usage,
         resize: true,
-        colors: ['#99d683', '#13dafe', '#6164c1', '#ce2e0a', '#c90ab6']
+        colors: ['#CCFF00', '#FFCC00', '#FF6699', '#CC3300', '#6600FF', '#6600CC', '#66CCCC', '#66FF66', '#00CCFF', '#333333', '#993366', '#663300'],
+	formatter: function (os_usage, data) { return os_usage + '%' }
     });
 });
 
@@ -13,7 +14,8 @@ $.getJSON('api/browser', function (browser) {
         element: 'morris-browsers',
         data: browser,
         resize: true,
-        colors: ['#99d683', '#13dafe', '#6164c1', '#ce2e0a', '#c90ab6']
+        colors: ['#CCFF00', '#FFCC00', '#FF6699', '#CC3300', '#6600FF', '#6600CC', '#66CCCC', '#66FF66', '#00CCFF', '#333333', '#993366', '#663300'],
+	formatter: function (os_usage, data) { return os_usage + '%' }
     });
 });
 
@@ -22,7 +24,8 @@ $.getJSON('api/countries', function (countries) {
         element: 'morris-countries',
         data: countries,
         resize: true,
-        colors: ['#99d683', '#13dafe', '#6164c1', '#ce2e0a', '#c90ab6']
+        colors: ['#CCFF00', '#FFCC00', '#FF6699', '#CC3300', '#6600FF', '#6600CC', '#66CCCC', '#66FF66', '#00CCFF', '#333333', '#993366', '#663300'],
+	formatter: function (countries, data) { return countries + '%' }
     });
 });
 // End of morris dunuts

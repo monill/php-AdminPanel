@@ -21,7 +21,7 @@ class VisitorController extends Controller
         if (Auth::user()->can('r-visitors'))
         {
             $this->trunk();
-            $visitors = Visitor::all();
+            $visitors = DB::table('visitors')->orderBy('id', 'desc')->get();
             return view('admin.visitors.index', compact('visitors'));
         } else {
             Log::newLog("Usuário tentou acessar: R*VISITORS, user: " . Auth::user()->name);

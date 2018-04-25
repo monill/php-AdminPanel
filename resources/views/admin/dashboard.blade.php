@@ -80,7 +80,7 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-xs-12">
             <div class="white-box">
-                <h3 class="box-title">Serviços mais visualizados</h3>
+                <h3 class="box-title">Meses mais acessados</h3>
                 <p>Valores referente ao ano de {{ date('Y') }}</p>
                 <div id="morris-bar-chart"></div>
             </div>

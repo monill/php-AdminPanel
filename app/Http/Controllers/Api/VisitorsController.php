@@ -25,7 +25,7 @@ class VisitorsController extends Controller
                 $percent = (Visitor::where('os_system', '=', $item->os_system)->count() / $all) * 100;
                 $data[$key] = new \stdClass();
                 $data[$key]->label = $item->os_system;
-                $data[$key]->value = $percent;
+                $data[$key]->value = round($percent);
             }
             Cache::put('os_usage', $data, 10);
         } else {
@@ -46,7 +46,7 @@ class VisitorsController extends Controller
                 $percent = (Visitor::where('browser', '=', $item->browser)->count() / $all) * 100;
                 $data[$key] = new \stdClass();
                 $data[$key]->label = $item->browser;
-                $data[$key]->value = $percent;
+                $data[$key]->value = round($percent);
             }
             Cache::put('browsers', $data, 10);
         } else {
@@ -67,7 +67,7 @@ class VisitorsController extends Controller
                 $percent = (Visitor::where('country', '=', $item->country)->count() / $all) * 100;
                 $data[$key] = new \stdClass();
                 $data[$key]->label = $item->country;
-                $data[$key]->value = $percent;
+                $data[$key]->value = round($percent);
             }
             Cache::put('countries', $data, 10);
         } else {
