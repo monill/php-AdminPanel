@@ -69,7 +69,7 @@ $ php artisan serve "para rodar como localhost:8000"
 ### Blogs
 ![Blogs](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/blogs.png)
 ### Blog Edit-Add
-![Blog Edit-Add](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/blog-edit-add.png)
+![Blog Edit-Add](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/blog-add-edit.png)
 ### Blog Categorias
 ![Blog Categorias](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/blog-categories.png)
 ### Serviços
