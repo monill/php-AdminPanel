@@ -1,5 +1,10 @@
 ## Painel Admin
 
+
+[![Build Status](https://travis-ci.org/z-song/laravel-admin.svg?branch=maste)]()
+[![Build Status](https://poser.pugx.org/rappasoft/laravel-5-boilerplate/v/unstable)]()
+
+
 Anhanguera - 1º Semestre 2018
 
 Trabalho solicitado pelo docente Vanderlei Ienne, da disciplina de Projeto Integrado IV - Desenvolvimento de Sistemas, para fins de avaliação do 4º semestre do ano de 2018, no curso de Análise e Desenvolvimento de Sistemas.
