@@ -14,19 +14,6 @@ Usuário já cadastrado para login: joao@sysop.com, Senha: x1x2x3x4
 ### Requisitos: *
 - Web server (Apache2 ou Nginx)
 - PHP >= 7.2
-- Dependências para PHP:
-  - php-openssl
-  - php-pdo
-  - php-mbstring
-  - php-tokenizer
-  - php-xml
-  - php-ctype
-  - php-json
-  - php=bcmath
-  - php-curl
-  - php-intl
-  - php-zip
-
 - MySQL >= 5.7 ou MariaDB >= 10.2
 - Um servidor dedicado decente. Não tente executar isso em algum servidor de baixa qualidade!
 
