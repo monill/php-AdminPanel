@@ -51,40 +51,40 @@ $ php artisan serve "para rodar como localhost:8000"
 
 
 ### Index
-![Index](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/index.png)
+![Index](/screens/index.png)
 ### Login
-![Login](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/login.png)
+![Login](/screens/login.png)
 ### Dashboard
-![Orcamentos](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/dashboard.png)
+![Orcamentos](/screens/dashboard.png)
 ### Perfil
-![Perfil](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/profile.png)
+![Perfil](/screens/profile.png)
 ### Blogs
-![Blogs](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/blogs.png)
+![Blogs](/screens/blogs.png)
 ### Blog Edit-Add
-![Blog Edit-Add](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/blog-add-edit.png)
+![Blog Edit-Add](/screens/blog-add-edit.png)
 ### Blog Categorias
-![Blog Categorias](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/blog-categories.png)
+![Blog Categorias](/screens/blog-categories.png)
 ### Serviços
-![Serviços](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/services.png)
+![Serviços](/screens/services.png)
 ### Configurações 1
-![Configurações 1](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/settings-1.png)
+![Configurações 1](/screens/settings-1.png)
 ### Configurações 2
-![Configurações 2](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/settings-2.png)
+![Configurações 2](/screens/settings-2.png)
 ### Configurações 3
-![Configurações 3](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/settings-3.png)
+![Configurações 3](/screens/settings-3.png)
 ### Configurações 4
-![Configurações 4](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/settings-4.png)
+![Configurações 4](/screens/settings-4.png)
 ### Usuários
-![Usuários](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/users.png)
+![Usuários](/screens/users.png)
 ### Usuário Edit-Add
-![Usuário Edit-Add](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/user-edit-add.png)
+![Usuário Edit-Add](/screens/user-edit-add.png)
 ### Visitantes
-![Visitantes](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/visitors.png)
+![Visitantes](/screens/visitors.png)
 ### Regras
-![Regras](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/rules.png)
+![Regras](/screens/rules.png)
 ### Regra Edit-Add
-![Regra](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/rule-edit-add.png)
+![Regra](/screens/rule-edit-add.png)
 ### Permissões
-![Permissões](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/permissions.png)
+![Permissões](/screens/permissions.png)
 ### Logs
-![Logs](https://raw.githubusercontent.com/joaorik/admin-panel/master/screens/logs.png)
+![Logs](/screens/logs.png)
